@@ -1,0 +1,55 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex; 
+    height: 100vh;
+}
+
+#map {
+    flex-grow: 1; 
+    height: 100%;
+    z-index: 0; 
+}
+
+.controls {
+    width: 300px;
+    padding: 20px;
+    background-color: #f8f8f8;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.controls h2 {
+    color: #333;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.controls input, .controls button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.controls button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+.controls button:hover {
+    background-color: #0056b3;
+}
+
+#output {
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid #007bff;
+    background-color: #e6f0ff;
+    color: #333;
+    white-space: pre-wrap;
+    font-size: 0.9em;
+}
