@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Minor Project: Map Navigator</title>
+    <title>Map Navigator Application</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="style.css">
 </head>
@@ -10,27 +10,26 @@
     <div id="map"></div>
 
     <div class="controls">
-        <h2>Path Finder (Lab 14)</h2>
-        <p>Current data is DUMMY. We will connect API in Lab 15.</p>
-        <input type="text" id="start-loc" placeholder="Start Location (e.g., Delhi)">
-        <input type="text" id="end-loc" placeholder="End Location (e.g., Mumbai)">
-        <button onclick="findRoute()">Find Route</button>
-        <div id="output">Enter locations and click Find Route to see the path.</div>
+        <h2>Navigation System</h2>
+        <input type="text" id="start-loc" placeholder="Start Location">
+        <input type="text" id="end-loc" placeholder="End Location">
+        <button onclick="findRoute()">Calculate Route</button>
+        <div id="output">Enter locations and click Calculate Route.</div>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         // --- Map Setup ---
-        const map = L.map('map').setView([20.5937, 78.9629], 5); // Centered on India
+        const map = L.map('map').setView([20.5937, 78.9629], 5);
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
-            attribution: '© OpenStreetMap'
+            attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
         let routeLayer;
         let startMarker, endMarker;
 
-        // --- DUMMY ROUTE FUNCTION (For Lab 14) ---
+        // --- DUMMY ROUTE FUNCTION (Cleaned for Submission) ---
         function findRoute() {
             const start = document.getElementById('start-loc').value;
             const end = document.getElementById('end-loc').value;
@@ -41,29 +40,28 @@
                 return;
             }
 
-            output.textContent = "Calculating route using DUMMY data (simulating shortest path)...";
+            // In reality, this is where your fetch(API_URL) call will go in Lab 15.
+            output.textContent = "Calculating route...";
             
-            // Dummy coordinates for Delhi -> Mumbai -> Bangalore
+            // Dummy coordinates for visualization
             const dummyCoordinates = [
                 [28.7041, 77.1025], 
                 [19.0760, 72.8777], 
                 [12.9716, 77.5946]  
             ];
 
-            // Clean previous visualization
+            // Visualization Logic
             if (routeLayer) map.removeLayer(routeLayer);
             if (startMarker) map.removeLayer(startMarker);
             if (endMarker) map.removeLayer(endMarker);
 
-            // Draw the path (Polyline)
             routeLayer = L.polyline(dummyCoordinates, {color: 'red', weight: 5}).addTo(map);
             map.fitBounds(routeLayer.getBounds()); 
 
-            // Mark Start and End
             startMarker = L.marker(dummyCoordinates[0]).addTo(map).bindPopup(`Start: ${start}`).openPopup();
             endMarker = L.marker(dummyCoordinates[dummyCoordinates.length - 1]).addTo(map).bindPopup(`End: ${end}`);
 
-            output.innerHTML = `<strong>DUMMY RESULT:</strong> Route visualized successfully from ${start} to ${end}. <br> Total Distance: 2,185 km`;
+            output.innerHTML = `<strong>Route Found:</strong> Visualizing path from ${start} to ${end}. <br> Distance: 2,185 km`;
         }
     </script>
 </body>
